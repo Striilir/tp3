@@ -42,7 +42,7 @@ public class PropertyExample {
     }
 
     public IntegerProperty anIntProperty() {
-        return anIntProperty;
+           return anIntProperty;
     }
 
 }
