@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@Disabled
 public class TriangleAreaTest {
     private TriangleArea triangleArea;
     private PrintStream out;
@@ -20,13 +19,11 @@ public class TriangleAreaTest {
         System.setOut(out);
     }
 
-    @Disabled
     @Test
     public void should_an_empty_triangle_have_a_zero_area() throws Exception {
         assertThat(triangleArea.getArea()).isZero();
     }
 
-    @Disabled
     @Test
     public void should_an_unity_triangle_have_a_0_5_area() throws Exception {
         triangleArea.setP1(0, 0);
