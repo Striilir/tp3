@@ -139,20 +139,23 @@ public class TriangleArea {
     }
 
     void printResult() {
-        throw new RuntimeException("Not yet implemented !");
+        System.out.println("For P1("+getX1()+","+getY1()+"), P2("+getX2()+","+getY2()+"), P3("+getX3()+","+getY3()+"), the area of triangle ABC is "+area.get());
     }
 
     private void createBinding() {
         NumberBinding x1y2 = Bindings.multiply(x1,y2);
         NumberBinding x1y3 = Bindings.multiply(x1,y3);
+        NumberBinding x2y3 = Bindings.multiply(x2,y3);
         NumberBinding x2y1 = Bindings.multiply(x2,y1);
         NumberBinding x3y1 = Bindings.multiply(x3,y1);
-        NumberBinding x3y2 = Bindings.multiply(x1,y2);
+        NumberBinding x3y2 = Bindings.multiply(x3,y2);
         NumberBinding op1 = Bindings.subtract(x1y2,x1y3);
-        NumberBinding op2 = Bindings.add(op1,x2y1);
-        NumberBinding op3 = Bindings.add(op2,x3y1);
-        NumberBinding op4 = Bindings.subtract(op3,x3y2);
+        NumberBinding op2 = Bindings.add(op1,x2y3);
+        NumberBinding op3 = Bindings.subtract(op2,x2y1);
+        NumberBinding op31 = Bindings.add(op3,x3y1);
+        NumberBinding op4 = Bindings.subtract(op31,x3y2);
         NumberBinding abs = Bindings.when(op4.lessThan(0)).then(Bindings.negate(op4)).otherwise(op4);
         NumberBinding opf = Bindings.divide(abs,2.0);
+        area.bind(opf);
     }
 }
